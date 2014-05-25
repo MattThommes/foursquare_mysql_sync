@@ -1,5 +1,5 @@
 { 
-    "name": "MattThommes/foursquare_mysql_sync",
+    "name": "mattthommes/foursquare_mysql_sync",
     "description": "Sync your Foursquare check-in's with a local MySQL database.",
 		"authors": [{
 				"name": "Matt Thommes",
