@@ -1,6 +1,6 @@
 <?php
 
-	require_once("/vagrant/dev/admin/prepend.inc.php");
+	require_once("global/index.php");
 	$db_conn = new Mysql("localhost", "root", "local", "foursquare");
 	$auth_token = "";
 
