@@ -9,7 +9,6 @@
 			}
 		],
     "require": {
-    	"php": ">=5.3.0",
     	"MattThommes/Global": "1.0"
     },
     "homepage": "http://github.com/MattThommes/foursquare_mysql_sync",
