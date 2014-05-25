@@ -2,7 +2,7 @@
 
 	require_once("/vagrant/dev/admin/prepend.inc.php");
 	$db_conn = new Mysql("localhost", "root", "local", "foursquare");
-	$auth_token = "WUBZVAM5JKGJAR3OODWCHCHVYX1BPAYO3FG4NNBUNAMMH20U";
+	$auth_token = "";
 
 	function get_total_checkins() {
 		$c = curl_init("https://api.foursquare.com/v2/users/self/checkins?limit=1&offset=0&sort=oldestfirst&oauth_token=" . $GLOBALS["auth_token"] . "&v=20140520");
