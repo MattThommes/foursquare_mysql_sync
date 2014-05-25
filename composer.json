@@ -11,6 +11,11 @@
     "require": {
     	"MattThommes/Global": "dev-master"
     },
+		"autoload": {
+			"psr-0": {
+				"MattThommes": "src/"
+			}
+		},
     "homepage": "http://github.com/MattThommes/foursquare_mysql_sync",
     "minimum-stability": "dev"
 }
