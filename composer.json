@@ -9,7 +9,7 @@
 			}
 		],
     "require": {
-    	"MattThommes/Global": "1.*@dev"
+    	"MattThommes/Global": "dev-master"
     },
     "homepage": "http://github.com/MattThommes/foursquare_mysql_sync",
     "minimum-stability": "dev"
