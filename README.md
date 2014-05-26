@@ -8,7 +8,7 @@ To get your Foursquare auth token, [go here](https://developer.foursquare.com/do
 
 ![Screenshot of getting Foursquare auth token](http://media.thomm.es/images/Screen%20Shot%202014-05-26%20at%208.17.04%20AM%202.jpg)
 
-Then paste it into the script near the top:
+Then paste it into the script (`index.php`) near the top:
 
 ![Screenshot of code](http://media.thomm.es/images/Screen%20Shot%202014-05-26%20at%203.49.36%20PM.jpg)
 
