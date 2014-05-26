@@ -2,6 +2,8 @@
 
 This script will fetch your Foursquare checkins and insert them into a local MySQL database. It will also display a HTML webpage of every checkin, with various options.
 
+The script will fetch photos from your Foursquare posts and save those to the database.
+
 ![Screenshot of webpage with Foursquare checkins](http://media.thomm.es/images/Screen%20Shot%202014-05-25%20at%208.06.59%20AM.jpg)
 
 To get your Foursquare auth token, [go here](https://developer.foursquare.com/docs/explore#req=users/self/checkins) and copy it from the example:
