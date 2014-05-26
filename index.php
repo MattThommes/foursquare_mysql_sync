@@ -1,7 +1,15 @@
 <?php
 
-	require_once("global/index.php");
-	$db_conn = new Mysql("localhost", "root", "local", "foursquare");
+	require "vendor/autoload.php";
+	use MattThommes\Debug;
+	use MattThommes\Backend\Mysql;
+	$debug = new Debug;
+
+	$mysql_host = "localhost";
+	$mysql_user = "root";
+	$mysql_pass = "local";
+	$mysql_db   = "foursquare";
+	$db_conn = new Mysql($mysql_host, $mysql_user, $mysql_pass, $mysql_db);
 	$auth_token = "";
 
 	function get_total_checkins() {
