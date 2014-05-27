@@ -14,6 +14,8 @@ Then paste it into the script (`index.php`) near the top:
 
 ![Screenshot of code](http://media.thomm.es/images/Screen%20Shot%202014-05-26%20at%203.49.36%20PM.jpg)
 
+The script can only process 250 checkins per sync run, so you'll have to initally click "Sync" a few times (if you have a lot of checkins).
+
 Here is the database table structure:
 
 	CREATE TABLE `checkins` (
