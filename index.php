@@ -10,7 +10,7 @@
 	$mysql_pass = "local";
 	$mysql_db   = "foursquare";
 	$db_conn = new Mysql($mysql_host, $mysql_user, $mysql_pass, $mysql_db);
-	$auth_token = "WUBZVAM5JKGJAR3OODWCHCHVYX1BPAYO3FG4NNBUNAMMH20U";
+	$auth_token = "";
 
 	function get_total_checkins() {
 		$c = curl_init("https://api.foursquare.com/v2/users/self/checkins?limit=1&offset=0&sort=oldestfirst&oauth_token=" . $GLOBALS["auth_token"] . "&v=20140520");
