@@ -40,6 +40,12 @@
 		exit;
 	}
 
+	if (isset($_GET["delete"])) {
+		$row_id = (int)$_GET["delete"];
+		$db_conn->query("DELETE FROM checkins WHERE id = '$row_id' LIMIT 1");
+		header("Location: index.php");
+	}
+
 	if (isset($_GET["sync"])) {
 
 		$per_page = 250;
@@ -52,18 +58,15 @@
 		curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
 		$r = curl_exec($c);
-//dbg($r);
 		curl_close($c);
 		$json = json_decode($r);
-//dbg($json);
+//$debug->dbg($json);
 
 		foreach ($json->response->checkins->items as $checkin) {
-//dbg($checkin);
+//$debug->dbg($checkin);
 			$query = "SELECT * FROM checkins WHERE foursquare_id = '" . $checkin->id . "'";
-//dbg($query);
 			$exists = $db_conn->query($query);
 			$exists = $exists->fetch();
-//dbg($exists);
 			if (!$exists) {
 				if (!isset($checkin->venue)) {
 					continue;
@@ -93,6 +96,11 @@
 						$photo2 = $checkin->photos->items[1];
 						$photo2_url = $photo2->prefix . $photo2->width . "x" . $photo2->height . $photo2->suffix;
 						$photo2_data = addslashes(file_get_contents($photo2_url));
+					}
+				}
+				if ((int)$checkin->comments->count) {
+					foreach ($checkin->comments->items as $comment) {
+
 					}
 				}
 				$fields = array(
@@ -166,7 +174,7 @@
 	
 	<body>
 
-		<p><a href="index.php">View</a> | <a href="index.php?sync">Sync</a> | Total cached: <?php echo count($checkins); ?> | Total live: <?php echo $total_live; ?></p>
+		<p><a href="index.php">Home</a> | <a href="index.php?sync">Sync</a> | Total cached: <?php echo count($checkins); ?> | Total live: <?php echo $total_live; ?></p>
 
 		<table>
 	
@@ -177,6 +185,7 @@
 				<th>Categories</th>
 				<th>Photo 1</th>
 				<th>Photo 2</th>
+				<th>Actions</th>
 			</tr>
 
 			<?php
@@ -220,6 +229,7 @@
 
 						?>
 					</td>
+					<td><a href="index.php?delete=<?php echo $checkin["id"]; ?>">Delete</a></td>
 				</tr>
 				<?php
 			}
