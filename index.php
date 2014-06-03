@@ -10,7 +10,7 @@
 	$mysql_pass = "local";
 	$mysql_db   = "foursquare";
 	$db_conn = new Mysql($mysql_host, $mysql_user, $mysql_pass, $mysql_db);
-	$auth_token = "";
+	$auth_token = "WUBZVAM5JKGJAR3OODWCHCHVYX1BPAYO3FG4NNBUNAMMH20U";
 
 	function get_total_checkins() {
 		$c = curl_init("https://api.foursquare.com/v2/users/self/checkins?limit=1&offset=0&sort=oldestfirst&oauth_token=" . $GLOBALS["auth_token"] . "&v=20140520");
@@ -151,6 +151,10 @@
 
 		<style type="text/css">
 
+			body {
+				font-family: Arial, Helvetica, sans-serif;
+			}
+
 			blockquote {
 				color: #666;
 				font-style: italic;
@@ -159,6 +163,7 @@
 			}
 
 			table th {
+				background-color: #ccc;
 				border: 1px solid #333;
 				text-align: left;
 			}
@@ -179,6 +184,7 @@
 		<table>
 	
 			<tr>
+				<th width="70">Local ID</th>
 				<th width="150">Date/Time</th>
 				<th width="500">Venue Name</th>
 				<th>Shout</th>
@@ -193,6 +199,7 @@
 			foreach ($checkins as $checkin) {
 				?>
 				<tr>
+					<td><?php echo $checkin["id"]; ?></td>
 					<td><?php echo $checkin["dt_sql"]; ?></td>
 					<td><?php echo $checkin["venue_name"]; ?></td>
 					<td><blockquote><?php echo $checkin["shout"]; ?></blockquote></td>
