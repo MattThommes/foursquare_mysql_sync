@@ -200,7 +200,7 @@
 				?>
 				<tr>
 					<td><?php echo $checkin["id"]; ?></td>
-					<td><?php echo $checkin["dt_sql"]; ?></td>
+					<td><?php echo date("m/d/Y g:ia", $checkin["dt_unix"]); ?></td>
 					<td><?php echo $checkin["venue_name"]; ?></td>
 					<td><blockquote><?php echo $checkin["shout"]; ?></blockquote></td>
 					<td><?php echo $checkin["venue_categories"]; ?></td>
