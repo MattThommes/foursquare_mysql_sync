@@ -1,18 +1,27 @@
 # Foursquare to MySQL
 
-This script will fetch your Foursquare checkins and insert them into a local MySQL database. It will also display a HTML webpage of every checkin, with various options.
+This script will fetch your Foursquare checkins and insert them into a local MySQL database. It will also display a HTML webpage of every checkin, with various options (like viewing the raw photos, etc).
 
-The script will fetch photos from your Foursquare posts and save those to the database.
+## Installation
 
-![Screenshot of webpage with Foursquare checkins](http://media.thomm.es/images/Screen%20Shot%202014-05-25%20at%208.06.59%20AM.jpg)
+To get started, create a file called `auth_token.php` and put it in the same directory as the `index.php` file (from this repository). The contents of `auth_token.php` should be
 
+	<?php
+
+		// your Foursquare auth token.
+		$auth_token = "NDASDUI38NSDKOISDJASDNAHYEREA32ISDS";
+
+	?>
+	
 To get your Foursquare auth token, [go here](https://developer.foursquare.com/docs/explore#req=users/self/checkins) and copy it from the example:
 
 ![Screenshot of getting Foursquare auth token](http://media.thomm.es/images/Screen%20Shot%202014-05-26%20at%208.17.04%20AM%202.jpg)
 
-Then paste it into the script (`index.php`) near the top:
+## Usage
 
-![Screenshot of code](http://media.thomm.es/images/Screen%20Shot%202014-05-26%20at%203.49.36%20PM.jpg)
+The script will fetch photos from your Foursquare posts and save those to the database. It currently only takes the first **two** photos that you post (per checkin).
+
+![Screenshot of webpage with Foursquare checkins](http://media.thomm.es/images/Screen%20Shot%202014-05-25%20at%208.06.59%20AM.jpg)
 
 The script can only process 250 checkins per sync run, so you'll have to initally click "Sync" a few times (if you have a lot of checkins).
 
