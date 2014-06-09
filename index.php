@@ -186,32 +186,36 @@
 
 		<p><a href="index.php">Home</a> | <a href="index.php?sync">Sync</a> | Total cached: <?php echo count($checkins); ?> | Total live: <?php echo $total_live; ?></p>
 
+		<table>
+
+			<tr>
+				<th width="70">Local ID</th>
+				<th width="150">Date/Time</th>
+				<th width="400">Venue Name</th>
+				<th width="200">Shout</th>
+				<th width="150">Categories</th>
+				<th width="250">Photo 1</th>
+				<th width="250">Photo 2</th>
+				<th width="30">Actions</th>
+			</tr>
+		
+		</table>
+
 		<div id="data">
 	
 			<table>
-	
-				<tr>
-					<th width="70">Local ID</th>
-					<th width="150">Date/Time</th>
-					<th width="500">Venue Name</th>
-					<th>Shout</th>
-					<th>Categories</th>
-					<th>Photo 1</th>
-					<th>Photo 2</th>
-					<th>Actions</th>
-				</tr>
 
 				<?php
 
 				foreach ($checkins as $checkin) {
 					?>
 					<tr>
-						<td><?php echo $checkin["id"]; ?></td>
-						<td><?php echo date("m/d/Y g:ia", $checkin["dt_unix"]); ?></td>
-						<td><?php echo $checkin["venue_name"]; ?></td>
-						<td><blockquote><?php echo $checkin["shout"]; ?></blockquote></td>
-						<td><?php echo $checkin["venue_categories"]; ?></td>
-						<td>
+						<td width="70"><?php echo $checkin["id"]; ?></td>
+						<td width="150"><?php echo date("m/d/Y g:ia", $checkin["dt_unix"]); ?></td>
+						<td width="400"><?php echo $checkin["venue_name"]; ?></td>
+						<td width="200"><blockquote><?php echo $checkin["shout"]; ?></blockquote></td>
+						<td width="150"><?php echo $checkin["venue_categories"]; ?></td>
+						<td width="250">
 							<?php
 
 								if ($checkin["photo1_data"]) {
@@ -227,7 +231,7 @@
 
 							?>
 						</td>
-						<td>
+						<td width="250">
 							<?php
 
 								if ($checkin["photo2_data"]) {
@@ -243,7 +247,7 @@
 
 							?>
 						</td>
-						<td><a href="index.php?delete=<?php echo $checkin["id"]; ?>">Delete</a></td>
+						<td width="30"><a href="index.php?delete=<?php echo $checkin["id"]; ?>">Delete</a></td>
 					</tr>
 					<?php
 				}
@@ -275,7 +279,8 @@
 			(function($){
 
 				$("#data").simplePagination({
-					items_per_page: 25
+					items_per_page: 25,
+					use_page_count: true
 				});
 
 			})(jQuery);
