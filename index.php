@@ -149,33 +149,8 @@
 
 	<head>
 
-		<style rel="stylesheet" href="simple-pagination-plugin.css" media="screen" />
-
-		<style type="text/css">
-
-			body {
-				font-family: Arial, Helvetica, sans-serif;
-			}
-
-			blockquote {
-				color: #666;
-				font-style: italic;
-				margin: 0;
-				padding: 0;
-			}
-
-			table th {
-				background-color: #ccc;
-				border: 1px solid #333;
-				text-align: left;
-			}
-
-			table td {
-				border: 1px dotted #999;
-				vertical-align: top;
-			}
-
-		</style>
+		<link rel="stylesheet" href="styles.css" media="screen" />
+		<?php /*<link rel="stylesheet" href="simple-pagination-plugin.css" media="screen" />*/ ?>
 
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 		<script src="jquery-simple-pagination-plugin.js"></script>

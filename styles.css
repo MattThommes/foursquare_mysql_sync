@@ -1,0 +1,21 @@
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+blockquote {
+	color: #666;
+	font-style: italic;
+	margin: 0;
+	padding: 0;
+}
+
+table th {
+	background-color: #ccc;
+	border: 1px solid #333;
+	text-align: left;
+}
+
+table td {
+	border: 1px dotted #999;
+	vertical-align: top;
+}
