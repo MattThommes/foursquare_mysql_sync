@@ -149,6 +149,8 @@
 
 	<head>
 
+		<style rel="stylesheet" href="simple-pagination-plugin.css" media="screen" />
+
 		<style type="text/css">
 
 			body {
@@ -174,6 +176,9 @@
 			}
 
 		</style>
+
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+		<script src="jquery-simple-pagination-plugin.js"></script>
 	
 	</head>
 	
@@ -181,69 +186,101 @@
 
 		<p><a href="index.php">Home</a> | <a href="index.php?sync">Sync</a> | Total cached: <?php echo count($checkins); ?> | Total live: <?php echo $total_live; ?></p>
 
-		<table>
+		<div id="data">
 	
-			<tr>
-				<th width="70">Local ID</th>
-				<th width="150">Date/Time</th>
-				<th width="500">Venue Name</th>
-				<th>Shout</th>
-				<th>Categories</th>
-				<th>Photo 1</th>
-				<th>Photo 2</th>
-				<th>Actions</th>
-			</tr>
-
-			<?php
-
-			foreach ($checkins as $checkin) {
-				?>
+			<table>
+	
 				<tr>
-					<td><?php echo $checkin["id"]; ?></td>
-					<td><?php echo date("m/d/Y g:ia", $checkin["dt_unix"]); ?></td>
-					<td><?php echo $checkin["venue_name"]; ?></td>
-					<td><blockquote><?php echo $checkin["shout"]; ?></blockquote></td>
-					<td><?php echo $checkin["venue_categories"]; ?></td>
-					<td>
-						<?php
-
-							if ($checkin["photo1_data"]) {
-								$embed_url1 = "index.php?image=" . $checkin["id"] . "-1";
-								?>
-									<a href="<?php echo $embed_url1; ?>" target="_blank">
-										<embed src="<?php echo $embed_url1; ?>" type="image/jpeg" style="height: auto; max-width: 200px;"></embed>
-									</a>
-									<a href="<?php echo $embed_url1; ?>" target="_blank">Local</a> |
-									<a href="<?php echo $checkin["photo1_url"]; ?>" target="_blank">Foursquare</a>
-								<?php
-							}
-
-						?>
-					</td>
-					<td>
-						<?php
-
-							if ($checkin["photo2_data"]) {
-								$embed_url2 = "index.php?image=" . $checkin["id"] . "-2";
-								?>
-									<a href="<?php echo $embed_url2; ?>" target="_blank">
-										<embed src="<?php echo $embed_url2; ?>" type="image/jpeg" style="height: auto; max-width: 200px;"></embed>
-									</a>
-									<a href="<?php echo $embed_url2; ?>" target="_blank">Local</a> |
-									<a href="<?php echo $checkin["photo2_url"]; ?>" target="_blank">Foursquare</a>
-								<?php
-							}
-
-						?>
-					</td>
-					<td><a href="index.php?delete=<?php echo $checkin["id"]; ?>">Delete</a></td>
+					<th width="70">Local ID</th>
+					<th width="150">Date/Time</th>
+					<th width="500">Venue Name</th>
+					<th>Shout</th>
+					<th>Categories</th>
+					<th>Photo 1</th>
+					<th>Photo 2</th>
+					<th>Actions</th>
 				</tr>
-				<?php
-			}
 
-			?>
+				<?php
+
+				foreach ($checkins as $checkin) {
+					?>
+					<tr>
+						<td><?php echo $checkin["id"]; ?></td>
+						<td><?php echo date("m/d/Y g:ia", $checkin["dt_unix"]); ?></td>
+						<td><?php echo $checkin["venue_name"]; ?></td>
+						<td><blockquote><?php echo $checkin["shout"]; ?></blockquote></td>
+						<td><?php echo $checkin["venue_categories"]; ?></td>
+						<td>
+							<?php
+
+								if ($checkin["photo1_data"]) {
+									$embed_url1 = "index.php?image=" . $checkin["id"] . "-1";
+									?>
+										<a href="<?php echo $embed_url1; ?>" target="_blank">
+											<embed src="<?php echo $embed_url1; ?>" type="image/jpeg" style="height: auto; max-width: 200px;"></embed>
+										</a>
+										<a href="<?php echo $embed_url1; ?>" target="_blank">Local</a> |
+										<a href="<?php echo $checkin["photo1_url"]; ?>" target="_blank">Foursquare</a>
+									<?php
+								}
+
+							?>
+						</td>
+						<td>
+							<?php
+
+								if ($checkin["photo2_data"]) {
+									$embed_url2 = "index.php?image=" . $checkin["id"] . "-2";
+									?>
+										<a href="<?php echo $embed_url2; ?>" target="_blank">
+											<embed src="<?php echo $embed_url2; ?>" type="image/jpeg" style="height: auto; max-width: 200px;"></embed>
+										</a>
+										<a href="<?php echo $embed_url2; ?>" target="_blank">Local</a> |
+										<a href="<?php echo $checkin["photo2_url"]; ?>" target="_blank">Foursquare</a>
+									<?php
+								}
+
+							?>
+						</td>
+						<td><a href="index.php?delete=<?php echo $checkin["id"]; ?>">Delete</a></td>
+					</tr>
+					<?php
+				}
+
+				?>
 	
-		</table>
+			</table>
+
+			<div class="my-navigation">
+				<div class="simple-pagination-first"></div>
+				<div class="simple-pagination-previous"></div>
+				<div class="simple-pagination-page-numbers"></div>
+				<div class="simple-pagination-next"></div>
+				<div class="simple-pagination-last"></div>
+			</div>
+			<div class="simple-pagination-page-x-of-x"></div>
+			<div class="simple-pagination-showing-x-of-x"></div>
+			<div>
+				Display <select class="simple-pagination-items-per-page"></select> items per page.
+			</div>
+			<div>
+				Go directly to page <select class="simple-pagination-select-specific-page"></select>.
+			</div>
+
+		</div>
+
+		<script>
+
+			(function($){
+
+				$("#data").simplePagination({
+					items_per_page: 25
+				});
+
+			})(jQuery);
+
+		</script>
 
 	</body>
 
