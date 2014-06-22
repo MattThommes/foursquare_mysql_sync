@@ -2,14 +2,9 @@
 
 	require "vendor/autoload.php";
 	use MattThommes\Debug;
-	use MattThommes\Backend\Mysql;
 	$debug = new Debug;
 
-	$mysql_host = "localhost";
-	$mysql_user = "root";
-	$mysql_pass = "local";
-	$mysql_db   = "foursquare";
-	$db_conn = new Mysql($mysql_host, $mysql_user, $mysql_pass, $mysql_db);
+	include "db_connect.php";
 	require_once("auth_token.php");
 
 	function get_total_checkins() {
