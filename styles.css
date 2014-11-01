@@ -16,6 +16,7 @@ table th {
 }
 
 table td {
-	border: 1px dotted #999;
+	background-color: white;
+	border: 1px solid #999;
 	vertical-align: top;
 }
