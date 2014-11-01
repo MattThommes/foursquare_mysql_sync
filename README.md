@@ -1,6 +1,6 @@
 # Foursquare to MySQL
 
-This script will fetch your Foursquare checkins and insert them into a local MySQL database. It will also display a HTML webpage of every checkin, with various options (like viewing the raw photos, etc).
+This script will fetch your Foursquare checkins and insert them into a MySQL database. It will also display a HTML webpage of every checkin, with various options (like viewing the raw photos, etc).
 
 ## Installation
 
