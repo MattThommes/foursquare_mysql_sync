@@ -21,8 +21,15 @@
 		return $r;
 	}
 
+	function get_total_local() {
+		$qry = $GLOBALS["db_conn"]->query("SELECT COUNT(*) as total FROM checkins");
+		$r = $qry->fetch();
+		return $r["total"];
+	}
+
 	// total from foursquare.
 	$total_live = get_total_checkins();
+	$total_local = get_total_local();
 
 	if (isset($_GET["image"])) {
 		// IE: "43-1" (this is row ID 43, and photo 1).
@@ -46,7 +53,11 @@
 		$per_page = 250;
 		$total_pages = $total_live / $per_page;
 		$start = floor($total_pages) * $per_page;
-		
+		if ($start > $total_local) {
+			// need to re-fetch old ones.
+			$start = $total_local;
+		}
+
 		$url = "https://api.foursquare.com/v2/users/self/checkins?limit=" . $per_page . "&offset=" . $start . "&sort=oldestfirst&oauth_token=" . $GLOBALS["auth_token"] . "&v=20140520";
 		$c = curl_init($url);
 		curl_setopt($c, CURLOPT_HEADER, 0);
