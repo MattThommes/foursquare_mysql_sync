@@ -179,6 +179,15 @@
 		<div id="nav">
 
 			<div id="search">
+				<?php
+					if ($where != "1") {
+						?>
+						<span>
+						<?php echo count($checkins) . " results for"; ?>
+						</span>
+						<?php
+					}
+				?>
 				<input type="text" value="<?php if (isset($_GET["search"])) echo $_GET["search"]; ?>" placeholder="Search..." />
 				<?php
 					if ($where != "1") {

@@ -29,6 +29,11 @@ table td {
 	float: right;
 }
 
+#search span {
+	color: red;
+	font-weight: bold;
+}
+
 #data_header {
 	clear: both;
 	margin-top: 20px;
