@@ -223,24 +223,20 @@
 
 		</div>
 
-		<table id="data_header">
-
-			<tr>
-				<th width="70">Local ID</th>
-				<th width="150">Date/Time</th>
-				<th width="400">Venue Name</th>
-				<th width="200">Shout</th>
-				<th width="150">Categories</th>
-				<th width="250">Photo 1</th>
-				<th width="250">Photo 2</th>
-				<th width="30">Actions</th>
-			</tr>
-		
-		</table>
-
 		<div id="data">
 	
 			<table>
+
+				<tr>
+					<th width="70">Local ID</th>
+					<th width="150">Date/Time</th>
+					<th width="400">Venue Name</th>
+					<th width="200">Shout</th>
+					<th width="150">Categories</th>
+					<th width="250">Photo 1</th>
+					<th width="250">Photo 2</th>
+					<th width="30">Actions</th>
+				</tr>
 
 				<?php
 
