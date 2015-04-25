@@ -21,7 +21,7 @@ To get your Foursquare auth token, [go here](https://developer.foursquare.com/do
 
 The script will fetch photos from your Foursquare posts and save those to the database. It currently only takes the first **two** photos that you post (per checkin).
 
-![Screenshot of webpage with Foursquare checkins](http://media.thomm.es/images/Screen%20Shot%202014-05-25%20at%208.06.59%20AM.jpg)
+![Screenshot of webpage with Foursquare checkins](images/foursquare2.png)
 
 The script can only process 250 checkins per sync run, so you'll have to initally click "Sync" a few times (if you have a lot of checkins).
 
@@ -43,5 +43,8 @@ Here is the database table structure:
 		`photo1_data` mediumblob,
 		`photo2_url` varchar(250) DEFAULT NULL,
 		`photo2_data` mediumblob,
-		PRIMARY KEY (`id`)
+		PRIMARY KEY (`id`),
+		KEY `venue_name` (`venue_name`),
+		KEY `foursquare_id` (`foursquare_id`),
+		KEY `shout` (`shout`)
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8;

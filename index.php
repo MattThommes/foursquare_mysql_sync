@@ -146,15 +146,22 @@
 		}
 		header("Location: index.php");
 	} else {
+		// Pagination.
 		$per_page = 100;
 		$page = 1;
 		if (isset($_GET["page"])) {
 			$page = (int)$_GET["page"];
 		}
 		$skipover = ($page - 1) * $per_page;
+
+		// Searching.
+		$where = "1";
+		if (isset($_GET["search"])) {
+			$where = "venue_name LIKE '%$_GET[search]%' OR shout LIKE '%$_GET[search]%'";
+		}
 	}
 
-	$checkins = $db_conn->query("SELECT * FROM checkins ORDER BY dt_unix DESC LIMIT $skipover, $per_page")->fetch_array();
+	$checkins = $db_conn->query("SELECT * FROM checkins WHERE $where ORDER BY dt_unix DESC LIMIT $skipover, $per_page")->fetch_array();
 
 	?>
 
@@ -169,7 +176,19 @@
 	
 	<body>
 
-		<p>
+		<div id="nav">
+
+			<div id="search">
+				<input type="text" value="<?php if (isset($_GET["search"])) echo $_GET["search"]; ?>" placeholder="Search..." />
+				<?php
+					if ($where != "1") {
+						?>
+						<button>Clear</button>
+						<?php
+					}
+				?>
+			</div>
+
 			<a href="index.php">Home</a> | 
 			<a href="index.php?sync">Sync</a> | 
 			Total cached: <?php echo $total_local; ?> | 
@@ -192,9 +211,10 @@
 					}
 				?>
 			</select>
-		</p>
 
-		<table>
+		</div>
+
+		<table id="data_header">
 
 			<tr>
 				<th width="70">Local ID</th>
@@ -272,6 +292,17 @@
 
 				$("#pages").on("change", function() {
 					window.location = "index.php?page=" + $(this).val();
+				});
+
+				$("#search input").on("keypress", function(e) {
+					if (e.which == 13) {
+						window.location = "index.php?search=" + encodeURIComponent($(this).val());
+					}
+				});
+
+				// "Clear" button (if search is present).
+				$("#search button").on("click", function() {
+					window.location = "index.php";
 				});
 
 			});
