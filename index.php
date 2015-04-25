@@ -145,9 +145,16 @@
 			}
 		}
 		header("Location: index.php");
+	} else {
+		$per_page = 100;
+		$page = 1;
+		if (isset($_GET["page"])) {
+			$page = (int)$_GET["page"];
+		}
+		$skipover = ($page - 1) * $per_page;
 	}
 
-	$checkins = $db_conn->query("SELECT * FROM checkins ORDER BY dt_unix DESC")->fetch_array();
+	$checkins = $db_conn->query("SELECT * FROM checkins ORDER BY dt_unix DESC LIMIT $skipover, $per_page")->fetch_array();
 
 	?>
 
@@ -156,16 +163,36 @@
 	<head>
 
 		<link rel="stylesheet" href="styles.css" media="screen" />
-		<?php /*<link rel="stylesheet" href="simple-pagination-plugin.css" media="screen" />*/ ?>
-
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-		<script src="jquery-simple-pagination-plugin.js"></script>
 	
 	</head>
 	
 	<body>
 
-		<p><a href="index.php">Home</a> | <a href="index.php?sync">Sync</a> | Total cached: <?php echo count($checkins); ?> | Total live: <?php echo $total_live; ?></p>
+		<p>
+			<a href="index.php">Home</a> | 
+			<a href="index.php?sync">Sync</a> | 
+			Total cached: <?php echo $total_local; ?> | 
+			Total live: <?php echo $total_live; ?> |
+			Pages:
+			<?php
+
+				$total_pages = ceil($total_local / $per_page);
+				echo $total_pages;
+
+			?>
+			<select id="pages">
+				<?php
+					$i = 1;
+					while ($i <= $total_pages) {
+						?>
+						<option value="<?php echo $i; ?>" <?php if ($page == $i) echo "selected='selected'"; ?>><?php echo $i; ?></option>
+						<?php
+						$i++;
+					}
+				?>
+			</select>
+		</p>
 
 		<table>
 
@@ -237,34 +264,17 @@
 	
 			</table>
 
-			<div class="my-navigation">
-				<div class="simple-pagination-first"></div>
-				<div class="simple-pagination-previous"></div>
-				<div class="simple-pagination-page-numbers"></div>
-				<div class="simple-pagination-next"></div>
-				<div class="simple-pagination-last"></div>
-			</div>
-			<div class="simple-pagination-page-x-of-x"></div>
-			<div class="simple-pagination-showing-x-of-x"></div>
-			<div>
-				Display <select class="simple-pagination-items-per-page"></select> items per page.
-			</div>
-			<div>
-				Go directly to page <select class="simple-pagination-select-specific-page"></select>.
-			</div>
-
 		</div>
 
 		<script>
 
-			(function($){
+			$(document).ready(function() {
 
-				$("#data").simplePagination({
-					items_per_page: 25,
-					use_page_count: true
+				$("#pages").on("change", function() {
+					window.location = "index.php?page=" + $(this).val();
 				});
 
-			})(jQuery);
+			});
 
 		</script>
 
